@@ -1,9 +1,13 @@
 package com.example.volleyactivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,8 +30,7 @@ import butterknife.ButterKnife;
 public class JsonObjectActivity extends AppCompatActivity {
     @BindView(R.id.txt)
     TextView txt;
-    @BindView(R.id.imageView)
-    ImageView imageView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,7 @@ public class JsonObjectActivity extends AppCompatActivity {
                     Gson gson = new Gson();
                     GitHubUser user = gson.fromJson(response.toString(),GitHubUser.class);
                     Log.d("TESTING",user.toString());
-                    Toast.makeText(JsonObjectActivity.this, "Hey Honey"+user.getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(JsonObjectActivity.this, "Hey Honey "+user.getName(), Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -62,4 +65,6 @@ public class JsonObjectActivity extends AppCompatActivity {
         RequestQueue queue= Volley.newRequestQueue(this);
         queue.add(request);
     }
+
+
 }
